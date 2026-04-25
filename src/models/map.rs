@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct MapCityNode{
     pub lat:f64,
     pub lon:f64,
