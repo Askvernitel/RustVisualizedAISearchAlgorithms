@@ -1,3 +1,4 @@
+use bevy::ecs::resource::Resource;
 use reqwest::blocking::Client;
 use serde::Deserialize;
 
@@ -5,6 +6,7 @@ use crate::utils::map::*;
 use crate::models::overpass::*;
 use crate::models::map::*;
 
+#[derive(Resource)]
 pub struct Map{ 
     client: Client
 }

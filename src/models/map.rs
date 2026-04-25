@@ -1,3 +1,5 @@
+use bevy::ecs::resource::Resource;
+
 #[derive(Debug)]
 pub struct MapCityNode{
     pub lat:f64,
@@ -5,3 +7,8 @@ pub struct MapCityNode{
     pub city:String
 }
 
+
+#[derive(Resource)]
+pub struct MapQuery{
+    pub query:String,
+}
