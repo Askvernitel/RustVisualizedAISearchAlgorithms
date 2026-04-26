@@ -1,6 +1,11 @@
 use bevy::ecs::component::Component;
 
 
+pub struct NeighbourNode{
+    pub visual_node:VisualNode,
+    pub cost:i32,
+}
+
 #[derive(Component)]
 pub struct VisualNode{
     pub x: f64,
@@ -12,6 +17,7 @@ pub struct VisualNode{
 
     pub neighbours: Vec<VisualNode>,
 }
+
 
 
 

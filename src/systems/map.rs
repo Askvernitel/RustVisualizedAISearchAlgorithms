@@ -3,6 +3,8 @@ use bevy::{asset::Assets, camera::Camera2d, color::{Color, palettes::css::RED}, 
 use crate::{models::map::{self, MapQuery}, services::map::Map, utils};
 
 
+const SCALE:f64 = 150.0;
+
 pub fn startup(mut commands:Commands, 
     mut map_service:ResMut<Map>,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -12,25 +14,27 @@ pub fn startup(mut commands:Commands,
     //camera
     commands.spawn(Camera2d::default());
 
-    //get map nodes
+    //show map nodes
     let map_nodes = map_service.get_map_nodes(query.query.clone());
     let visual_nodes = utils::map::to_visual_nodes(map_nodes);
     for visual_node in visual_nodes{
-        print!("Printing");
-        print!("x:{}, y:{}", visual_node.x, visual_node.y);
+        print!("x:{:?}, y:{:?} \n", visual_node.x, visual_node.y);
         commands.spawn((
-            Mesh2d(meshes.add(Circle::new(1.0))),
-            Transform::from_xyz((visual_node.x * 10.0 - 200.0) as f32, (visual_node.y * 10.0 -200.0)as f32, 0.0),
+            Mesh2d(meshes.add(Circle::new(10.0))),
+            Transform::from_xyz((SCALE*(visual_node.x  - 82.0)) as f32, (SCALE*(visual_node.y - 80.5)) as f32, 0.0),
             MeshMaterial2d(materials.add(ColorMaterial::from_color(RED))),
         ));
     }
+    draw_nodes();
 }
 
 
+pub fn draw_nodes(&mut map_service:ResMut<Map>){
 
-pub fn draw_nodes(commands:Commands){
 }
+pub fn draw_lines(){
 
+}
 
 pub fn traverse_nodes(commands:Commands){
 }
