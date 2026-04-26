@@ -1,12 +1,12 @@
 use bevy::ecs::component::Component;
 
-
+#[derive(Clone)]
 pub struct NeighbourNode{
-    pub visual_node:VisualNode,
-    pub cost:i32,
+    pub index:usize,
+    pub distance:f64,
 }
 
-#[derive(Component)]
+#[derive(Component, Clone)]
 pub struct VisualNode{
     pub x: f64,
     pub y: f64,
@@ -15,7 +15,7 @@ pub struct VisualNode{
     pub visited: bool,
     pub is_visiting: bool,
 
-    pub neighbours: Vec<VisualNode>,
+    pub neighbours: Vec<NeighbourNode>,
 }
 
 

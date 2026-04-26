@@ -1,4 +1,4 @@
-use crate::{components::node::VisualNode, models::{map::MapCityNode, overpass::OverpassElement}};
+use crate::{components::node::{NeighbourNode, VisualNode}, models::{map::MapCityNode, overpass::OverpassElement}};
 
 
 const EARTH_RADIUS:f64 = 120.0;
@@ -55,6 +55,21 @@ pub fn to_visual_nodes(map_city_nodes:Vec<MapCityNode>) -> Vec<VisualNode>{
     visual_nodes
 }
 
-pub fn wire_visual_nodes(){
+pub fn connect_visual_nodes(visual_nodes:&mut Vec<VisualNode>){
 
+    for i in 0..visual_nodes.len(){ 
+        for j in 0..visual_nodes.len(){
+            if i == j{
+                continue;
+            }
+
+            let euclidian_distance = get_euclidian_distance((visual_nodes[i].x, visual_nodes[i].y), (visual_nodes[j].x, visual_nodes[j].y));
+
+            visual_nodes[i].neighbours.push(
+            NeighbourNode{
+                index:j,
+                distance:euclidian_distance,
+            });
+        }
+    }
 }
